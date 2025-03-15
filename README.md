@@ -24,79 +24,39 @@ Django-ORM/
 - Django Installed
 - MySQL Database Setup
 
-## Models.py
+## Models Structure
 
-```python
-from django.db import models
-
-class Student(models.Model):
-    id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=50)
-    age = models.IntegerField()
-    city = models.CharField(max_length=50)
-    roll_number = models.IntegerField()
-    student_class = models.CharField(max_length=50)
-```
+The project defines a `Student` model with attributes such as ID, Name, Age, City, Roll Number, and Class. These fields are used to perform various ORM operations.
 
 ## Operations Performed
 
 ### 1. Create Operation
 
-```python
-Student.objects.create(id=101, name='Aon', age=10, city='Pune', roll_number=502, student_class='Class_2')
-```
+The create operation involves adding a new student record with details like ID, name, age, city, roll number, and class.
 
 ### 2. Retrieve Data
 
-```python
-Student.objects.all()
-Student.objects.filter(city='Pune')
-```
+The retrieve operation allows fetching all student records or filtering them based on specific conditions, such as filtering by city.
 
 ### 3. Update Operation
 
-```python
-student = Student.objects.get(id=101)
-student.student_class = 'Class_2'
-student.save()
-```
+The update operation enables modifying an existing record. For instance, updating the class of a student after mistakenly entering incorrect data.
 
 ### 4. Delete Operation
 
-```python
-student = Student.objects.get(id=101)
-student.delete()
-```
+The delete operation is used to remove a specific student record from the database.
 
 ### 5. Bulk Data Insertion
 
-```python
-students = [
-    Student(id=102, name='John', age=15, city='Mumbai', roll_number=503, student_class='Class_3'),
-    Student(id=103, name='Emma', age=14, city='Delhi', roll_number=504, student_class='Class_4')
-]
-Student.objects.bulk_create(students)
-```
+Bulk data insertion allows adding multiple student records at once, which is useful when handling large datasets.
 
-## Export to CSV
+## Data Export to CSV
 
-```python
-import csv
+The project includes functionality to export student data to a CSV file. This allows easy data analysis and reporting.
 
-with open('project.csv', 'w', newline='') as csvfile:
-    writer = csv.writer(csvfile)
-    writer.writerow(['ID', 'Name', 'Age', 'City', 'Roll Number', 'Class'])
-    for student in Student.objects.all():
-        writer.writerow([student.id, student.name, student.age, student.city, student.roll_number, student.student_class])
-```
+## How to Run the Project
 
-## How to Run
+1. Ensure all prerequisites are installed.
+2. Run the Django server to perform CRUD operations.
 
-```bash
-python manage.py runserver
-```
-
-## Conclusion
-
-This project demonstrates the fundamental CRUD operations in Django ORM and how to export data to CSV.
 
