@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ormq',
         'USER': 'root',
-        'PASSWORD': 'wackjack',
+        'PASSWORD': '********', # replace it with your sql password. 
         'HOST': 'localhost',  
         'PORT': '3306',      
     }
