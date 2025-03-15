@@ -1,0 +1,103 @@
+# Django ORM Operations
+
+## 1. Create Operation
+```python
+# Creating a new student record
+Student.objects.create(
+    id=101,
+    name='aon',
+    age=10,
+    city='Pune',
+    roll_number=502,
+    student_class='class_2'  # Mistakenly added 'class_2' instead of 'Class_2'
+)
+```
+
+## 2. Update Operation
+```python
+# Correcting the mistake in 'student_class'
+student = Student.objects.get(id=101)  # Fetch the student record by ID
+student.student_class = 'Class_2'  # Updating the field
+student.save()  # Saving the changes
+```
+
+## 3. Read Operation
+```python
+# Fetching all student records
+students = Student.objects.all()
+
+# Fetching a specific student by ID
+student = Student.objects.get(id=101)
+
+# Filtering students from 'Pune'
+students_from_pune = Student.objects.filter(city='Pune')
+```
+
+## 4. Delete Operation
+```python
+# Deleting a specific student record
+student = Student.objects.get(id=101)
+student.delete()
+```
+
+## 5. Bulk Create
+```python
+# Adding multiple student records at once
+students = [
+    Student(id=102, name='John', age=12, city='Mumbai', roll_number=503, student_class='Class_3'),
+    Student(id=103, name='Alice', age=11, city='Delhi', roll_number=504, student_class='Class_4')
+]
+Student.objects.bulk_create(students)
+```
+
+## 6. Bulk Update
+```python
+# Updating multiple records at once
+students = Student.objects.filter(city='Mumbai')
+for student in students:
+    student.city = 'Navi Mumbai'
+Student.objects.bulk_update(students, ['city'])
+```
+
+## 7. Counting Records
+```python
+# Counting the number of students
+count = Student.objects.count()
+```
+
+## 8. Ordering Records
+```python
+# Ordering by age in ascending order
+students_by_age = Student.objects.all().order_by('age')
+```
+
+## 9. Aggregation
+```python
+from django.db.models import Avg
+
+# Average age of students
+average_age = Student.objects.all().aggregate(Avg('age'))
+```
+
+## 10. Limiting Records
+```python
+# Fetching the first 5 records
+students_limited = Student.objects.all()[:5]
+```
+
+## 11. Checking Existence
+```python
+# Checking if a student with ID 101 exists
+exists = Student.objects.filter(id=101).exists()
+```
+
+## 12. Getting Field Values Only
+```python
+# Fetching only student names
+student_names = Student.objects.values_list('name', flat=True)
+```
+
+---
+
+This file covers all CRUD (Create, Read, Update, Delete) operations along with additional functionalities like bulk operations, aggregation, and filtering.
+
