@@ -59,6 +59,3 @@ The project includes functionality to export student data to a CSV file. This al
 1. Ensure all prerequisites are installed.
 2. Run the Django server to perform CRUD operations.
 
-
-
-
